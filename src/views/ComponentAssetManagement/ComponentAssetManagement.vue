@@ -1,12 +1,10 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <div class="content">组件资产管理</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+
 }
 </script>
 

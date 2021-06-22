@@ -1,12 +1,10 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <div id="app">用户账号管理</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+
 }
 </script>
 
