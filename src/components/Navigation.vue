@@ -84,9 +84,9 @@ export default {
           type: 'success',
           message: '注销成功!'
         })
-        // setTimeout(() => {
-        //   location.reload() // 强制刷新
-        // }, 100)
+        setTimeout(() => {
+          location.reload() // 强制刷新
+        }, 300)
         if (this.$route.path === '/UserAccountManagement') {
           this.$router.replace('/login')
         }
