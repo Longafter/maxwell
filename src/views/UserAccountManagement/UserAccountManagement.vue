@@ -22,50 +22,21 @@
     </div>
     <!-- 表格正文 -->
     <div class="table-div">
-      <span>共 {{ tableData.length }} 条信息</span>
+      <span>共 {{ userInfo.length }} 条信息</span>
       <el-table
-        :data="tableData"
+        :data="userInfo"
         align="center"
         :header-cell-style="{ background: '#EDF0F6' }"
       >
         <el-table-column
-          prop="userName"
-          label="用户名称"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="realName"
-          label="姓名"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="sex"
-          label="性别"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="mobile"
-          label="手机"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="email"
-          label="邮箱"
-          align="center"
-          width="190%"
-        ></el-table-column>
-        <el-table-column
-          prop="createdTime"
-          label="创建时间"
-          align="center"
-          width="170%"
-        ></el-table-column>
-        <el-table-column
-          prop="updatedTime"
-          label="更新时间"
-          align="center"
-          width="170%"
-        ></el-table-column>
+          v-for="(item, index) in columnData"
+          :key="index"
+          :prop="item.prop"
+          :label="item.label"
+          :width="item.width"
+          :align="item.align"
+        >
+        </el-table-column>
         <el-table-column label="操作" align="center" width="190%">
           <template slot-scope="scope">
             <el-button
@@ -94,13 +65,59 @@
 </template>
 
 <script>
+import userInfo from '@/mock/userInfo.js'
 export default {
   data () {
     return {
+      userInfo,
       formSearch: {
         user: ''
       },
-      tableData: []
+      tableData: [],
+      columnData: [
+        {
+          label: '用户名称',
+          prop: 'userName',
+          width: 150,
+          align: 'center'
+        },
+        {
+          label: '姓名',
+          prop: 'trueName',
+          width: 150,
+          align: 'center'
+        },
+        {
+          label: '性别',
+          prop: 'gender',
+          width: 100,
+          align: 'center'
+        },
+        {
+          label: '手机',
+          prop: 'mobile',
+          width: 130,
+          align: 'center'
+        },
+        {
+          label: '邮箱',
+          prop: 'email',
+          width: 200,
+          align: 'center'
+        },
+        {
+          label: '创建时间',
+          prop: 'createTime',
+          width: 180,
+          align: 'center'
+        },
+        {
+          label: '更新时间',
+          prop: 'updateTime',
+          width: 180,
+          align: 'center'
+        }
+      ]
     }
   },
   methods: {
@@ -116,10 +133,8 @@ export default {
 
 <style lang="scss">
 .uam-div {
-  // display: flex;
   position: relative;
   .demo-form-inline1 {
-    // display: flex;
     position: absolute;
     left: 8%;
     top: 50px;

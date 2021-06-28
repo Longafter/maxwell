@@ -10,65 +10,68 @@ VueRouter.prototype.push = function push (location, onResolve, onReject) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-const router = new VueRouter({
-  routes: [
-    {
-      // 登录页
-      path: '/Login',
-      name: 'Login',
-      component: () => import('@/views/Login/Login.vue')
-    },
-    {
-      // 首页
-      path: '/',
-      name: 'Home',
-      component: () => import('@/views/Home/Home.vue'),
-      // redirect 表示当路径使用到'/'时，就自动跳转到路径为'/ComponentRessoucesOverview'
-      redirect: '/ComponentRessoucesOverview',
-      children: [
-        // 导航栏各页
-        {
-          path: '/ComponentRessoucesOverview',
-          name: 'ComponentRessoucesOverview',
-          component: () => import('@/views/ComponentRessoucesOverview/ComponentRessoucesOverview.vue')
-        },
-        {
-          path: '/ComponentSupermarket',
-          name: 'ComponentSupermarket',
-          component: () => import('@/views/ComponentSupermarket/ComponentSupermarket.vue')
-        },
-        {
-          path: '/ComponentAssetManagement',
-          name: 'ComponentAssetManagement',
-          component: () => import('@/views/ComponentAssetManagement/ComponentAssetManagement.vue')
-        },
-        {
-          path: '/ComponentTypeManagement',
-          name: 'ComponentTypeManagement',
-          component: () => import('@/views/ComponentTypeManagement/ComponentTypeManagement.vue')
-        },
-        {
-          path: '/UserAccountManagement',
-          name: 'UserAccountManagement',
-          component: () => import('@/views/UserAccountManagement/UserAccountManagement.vue'),
-          // 因为我们需要为 UserAccountManagement 界面设置登录拦截，那么需要加上 meta
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/MyRelease',
-          name: 'MyRelease',
-          component: () => import('@/views/MyRelease/MyRelease.vue')
-        },
-        {
-          path: '/MyDownload',
-          name: 'MyDownload',
-          component: () => import('@/views/MyDownload/MyDownload.vue')
+const routes = [
+  {
+    // 登录页
+    path: '/Login',
+    name: 'Login',
+    component: () => import('@/views/Login/Login.vue')
+  },
+  {
+    // 首页
+    path: '/',
+    name: 'Home',
+    component: () => import('@/views/Home/Home.vue'),
+    // redirect 表示当路径使用到'/'时，就自动跳转到路径为'/ComponentRessoucesOverview'
+    redirect: '/ComponentRessoucesOverview',
+    children: [
+      // 导航栏各页
+      {
+        path: 'ComponentRessoucesOverview',
+        name: 'ComponentRessoucesOverview',
+        component: () => import('@/views/ComponentRessoucesOverview/ComponentRessoucesOverview.vue')
+      },
+      {
+        path: 'ComponentSupermarket',
+        name: 'ComponentSupermarket',
+        component: () => import('@/views/ComponentSupermarket/ComponentSupermarket.vue')
+      },
+      {
+        path: 'ComponentAssetManagement',
+        name: 'ComponentAssetManagement',
+        component: () => import('@/views/ComponentAssetManagement/ComponentAssetManagement.vue')
+      },
+      {
+        path: 'ComponentTypeManagement',
+        name: 'ComponentTypeManagement',
+        component: () => import('@/views/ComponentTypeManagement/ComponentTypeManagement.vue')
+      },
+      {
+        path: 'UserAccountManagement',
+        name: 'UserAccountManagement',
+        component: () => import('@/views/UserAccountManagement/UserAccountManagement.vue'),
+        // 因为我们需要为 UserAccountManagement 界面设置登录拦截，那么需要加上 meta
+        meta: {
+          requireAuth: true
         }
-      ]
-    }
-  ]
+      },
+      {
+        path: '/MyRelease',
+        name: 'MyRelease',
+        component: () => import('@/views/MyRelease/MyRelease.vue')
+      },
+      {
+        path: '/MyDownload',
+        name: 'MyDownload',
+        component: () => import('@/views/MyDownload/MyDownload.vue')
+      }
+    ]
+  }
+]
+
+const router = new VueRouter({
+  routes,
+  mode: 'history'
 })
 
 // 登录拦截
